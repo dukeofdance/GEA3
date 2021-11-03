@@ -29,9 +29,12 @@ public class AsteroidPool : MonoBehaviour
     private  void GrowPool()
     {
         Vector3 spawnLocation = EnemySpawner.v;
-        var instanceToAdd = Instantiate(prefab, spawnLocation, Quaternion.identity);
-        instanceToAdd.transform.SetParent(transform);
-        AddToPool(instanceToAdd);
+        for (int i = 0; i < EnemySpawner.enemyLimit; i++)
+        {
+            var instanceToAdd = Instantiate(prefab, spawnLocation, Quaternion.identity);
+            instanceToAdd.transform.SetParent(transform);
+            AddToPool(instanceToAdd);
+        }
     }
 
     public static void AddToPool(Projectile instance)

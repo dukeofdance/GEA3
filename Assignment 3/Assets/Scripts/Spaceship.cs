@@ -28,10 +28,11 @@ public class Spaceship : MonoBehaviour
             return;
             }
         Projectile projectile = BulletPool.Instance.GetFromPool();//Instantiate(this.bulletPrefab, bulletLocation.transform.position, quat);
+        projectile.transform.position = bulletLocation.transform.position;
         //projectile.destroyed += LaserDestroyed;
         Debug.Log("NOTE COME BACK HERE");
         //canShoot = false;
-        }
+    }
 
     public void LaserDestroyed()
         {

@@ -27,9 +27,12 @@ public class BasicPool : MonoBehaviour
 
     private void GrowPool(){
         Vector3 spawnLocation = EnemySpawner.v;
+        for (int i = 0; i < EnemySpawner.enemyLimit; i++)
+        {
             var instanceToAdd = Instantiate(prefab, spawnLocation, Quaternion.Euler(0f, -90f, 90f));
             instanceToAdd.transform.SetParent(transform);
             AddToPool(instanceToAdd);
+        }
     }
 
     public void AddToPool(GameObject instance){

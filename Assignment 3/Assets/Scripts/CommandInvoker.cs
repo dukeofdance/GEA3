@@ -46,7 +46,7 @@ public class CommandInvoker : MonoBehaviour
         {
             counter--;
             commandHistory[counter].Undo();
-
+            Debug.Log("Undid");
         }
     }
 

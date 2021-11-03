@@ -12,6 +12,6 @@ public class WavesUp : ICommand
 
     public void Undo()
     {
-        WaveManage.Decrease();
+        //WaveManage.Decrease();
     }
 }

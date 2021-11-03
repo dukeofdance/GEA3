@@ -31,14 +31,17 @@ public class BulletPool : MonoBehaviour
 
     private void GrowPool(){
         Quaternion quat = Quaternion.Euler(0, 90, 90);
-        var instanceToAdd = Instantiate(prefab, bulletLocation.transform.position, quat);
-        AddToPool(instanceToAdd);
-        
+        for (int i = 0; i < 5; i++)
+        {
+            var instanceToAdd = Instantiate(prefab, bulletLocation.transform.position, quat);
+            AddToPool(instanceToAdd);
+        }
     }
 
     public static void AddToPool(Projectile instance)
     {
         instance.gameObject.SetActive(false);
         availableObjects.Enqueue(instance);
+        Debug.Log("reloaded");
     }
 }
