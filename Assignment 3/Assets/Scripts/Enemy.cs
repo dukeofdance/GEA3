@@ -20,13 +20,18 @@ public class Enemy : Spaceship
 		if (other.gameObject.CompareTag("TopBoundary"))
 			{ return; }
 		if (other.gameObject.CompareTag("Boundary") || (other.gameObject.CompareTag("Player")))
-			{Destroy(this.gameObject);}
+			{
+			//Destroy(this.gameObject);
+			BasicPool.Instance.AddToPool(gameObject);
+			}
 		if (other.gameObject.CompareTag("PlayerBullet"))
 			{
 			if (lives == 0) 
 			{
-				Destroy(this.gameObject);
-			} else {
+				BasicPool.Instance.AddToPool(gameObject);
+				//Destroy(this.gameObject);
+			}
+			else {
 				lives -= 1;
 			}
 		}

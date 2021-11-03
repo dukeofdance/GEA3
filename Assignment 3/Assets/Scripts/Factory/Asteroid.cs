@@ -97,8 +97,8 @@ public class Asteroid : MonoBehaviour, Object
 		if (_Lives == 0)
 			{
 			Destroy(this.gameObject);
-			}
 		}
+	}
 
 	public void Start()
 		{

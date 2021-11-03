@@ -5,15 +5,16 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 	{
 
+	
 	public Vector3 direction;
 	public Rigidbody rb;
 	public float speed_min, speed_max;
 	public float rotation_min, rotation_max;
-
+	private bool active;
 	public System.Action destroyed;
 
 	private float speed, rotation;
-
+	
 	void Start()
 		{
 		rb = GetComponent<Rigidbody>();
@@ -39,9 +40,11 @@ public class Projectile : MonoBehaviour
 		if (this.gameObject.CompareTag("Asteroid") && other.gameObject.CompareTag("Asteroid")|| other.gameObject.CompareTag("TopBoundary") && this.gameObject.CompareTag("Asteroid")|| other.gameObject.CompareTag("TopBoundary") && this.gameObject.CompareTag("Enemy")) { return; }
 		if (this.gameObject.CompareTag("PlayerBullet"))
 			{
-			this.destroyed.Invoke();
+			//this.destroyed.Invoke();
+			AsteroidPool.AddToPool(this);
 			}
-		Destroy(this.gameObject);
+		//Destroy(this.gameObject);
+		BulletPool.AddToPool(this);
 		}
 	}
 

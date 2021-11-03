@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 public class EnemySpawner : MonoBehaviour
 	{
 	public float min__X = -1056f, max__X = 1056;
-	public int min_Size = 10, max_Size = 30;
+	public static int min_Size = 10, max_Size = 30;
 
 	public Projectile asteroidPrefab;
 	public GameObject enemyPrefab;
@@ -21,6 +21,8 @@ public class EnemySpawner : MonoBehaviour
 
 	public static int enemyLimit=1, waveTotal=1;
 	private int enemyCount;
+
+	public static Vector3 v;
 
 	public Canvas menu;
 	public TextMeshProUGUI enemyText;
@@ -46,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
 		if (menu.enabled == true)
         {
 			enemyText.text = "Enemy Count: " + enemyLimit;
-			waveCountText.text = "Total Waves: " + EnemySpawner.waveTotal;
+			waveCountText.text = "Total Waves: " + waveTotal;
 		}
 
 	}
@@ -64,9 +66,10 @@ public class EnemySpawner : MonoBehaviour
 		if (wave < waveTotal)
 			{
 			wave += 1;
-			WaveText.text = "Wave " + wave;
+			WaveText.text = "Wave " + wave+"/"+waveTotal;
 			enemyCount = 0;
 			enemyLimit++;
+			waveTimer = 10;
 			Invoke("SpawnEnemies", spawnTimer);
 			Invoke("nextWave", waveTimer);
 			}
@@ -102,20 +105,23 @@ public class EnemySpawner : MonoBehaviour
 
 		float pos__X = Random.Range(min__X, max__X);
 		Vector3 spawnLocation = transform.position;
+		v = spawnLocation;
 
 		spawnLocation.x = pos__X;
 		if (enemyCount < enemyLimit)
 		{
 			if (Random.Range(0, 2) > 0)
 			{
-				Projectile asteroid = Instantiate(asteroidPrefab, spawnLocation, Quaternion.identity);
+
+				Projectile asteroid = AsteroidPool.Instance.GetFromPool();//Instantiate(asteroidPrefab, spawnLocation, Quaternion.identity);
 				int rand = randomScale(min_Size, max_Size); // Random.Range(min_Size, max_Size);
 				asteroid.transform.localScale = new Vector3(rand, rand, rand);
 				Invoke("SpawnEnemies", spawnTimer);
 			}
 			else
 			{
-				Instantiate(enemyPrefab, spawnLocation, Quaternion.Euler(0f, -90f, 90f));
+				var nme =BasicPool.Instance.GetFromPool();
+				//Instantiate(enemyPrefab, spawnLocation, Quaternion.Euler(0f, -90f, 90f));
 				Invoke("SpawnEnemies", spawnTimer);
 			}
 			enemyCount++;

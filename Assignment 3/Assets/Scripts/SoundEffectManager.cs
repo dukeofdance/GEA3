@@ -46,7 +46,6 @@ public class SoundEffectManager : MonoBehaviour
             //Audio is played when the player press' the spacebar. The has_Shot action is called from the player class
             //and then calls the PlayAudio function. This will play the audio clip
              Player.has_Shot += PlayAudio;
-            Debug.Log("kerplam");
 
         }
     }
