@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
 	[SerializeField]
 	public static int enemyLimit=1, waveTotal=1;
-	private int enemyCount = 1;
+	private int enemyCount = 0;
 
 	public static Vector3 v;
 

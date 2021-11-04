@@ -7,6 +7,7 @@ using System;
 
 public class Player : Spaceship
 	{
+	public AudioSource die;
 
 	public int bounce;
 	public TextMeshProUGUI livesText;
@@ -65,6 +66,7 @@ public class Player : Spaceship
 		if (other.gameObject.tag == "Asteroid"|| other.gameObject.tag == "Enemy")
 			{
 			lives -= 1;
+			die.Play();
 			if (lives==0) {
 				SceneManager.LoadScene("YouLose");
 				}
