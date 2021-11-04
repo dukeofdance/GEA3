@@ -24,6 +24,7 @@ public class BulletPool : MonoBehaviour
     {
         if (availableObjects.Count == 0)
             GrowPool();
+        Debug.Log("count: " + availableObjects.Count);
         var instance = availableObjects.Dequeue();
         instance.gameObject.SetActive(true);
         return instance;
@@ -31,7 +32,7 @@ public class BulletPool : MonoBehaviour
 
     private void GrowPool(){
         Quaternion quat = Quaternion.Euler(0, 90, 90);
-        for (int i = 0; i < 5; i++)
+       // for (int i = 0; i < 5; i++)
         {
             var instanceToAdd = Instantiate(prefab, bulletLocation.transform.position, quat);
             AddToPool(instanceToAdd);

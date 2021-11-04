@@ -13,6 +13,7 @@ public class EnemyUp : ICommand
     public void Undo()
     {
         EnemyLimiter.Decrease();
+        Debug.Log("enemy undo");
     }
 
 }

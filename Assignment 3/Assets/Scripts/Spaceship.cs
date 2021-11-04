@@ -21,16 +21,15 @@ public class Spaceship : MonoBehaviour
         sqrMaxVelocity = maxVelocity * maxVelocity;
     }
 
-    protected void Shoot()
-        {
+    protected void Shoot(){
+        Debug.Log("pressed");
         if (!(canShoot = true))
             {
             return;
             }
         Projectile projectile = BulletPool.Instance.GetFromPool();//Instantiate(this.bulletPrefab, bulletLocation.transform.position, quat);
-        projectile.transform.position = bulletLocation.transform.position;
+        projectile.transform.position = transform.position;
         //projectile.destroyed += LaserDestroyed;
-        Debug.Log("NOTE COME BACK HERE");
         //canShoot = false;
     }
 

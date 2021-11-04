@@ -9,15 +9,15 @@ public class WaveManage : MonoBehaviour
         EnemySpawner.waveTotal++;
     }
 
-    //public static void Decrease()
-    //{
-    //    if (EnemySpawner.waveTotal <= 0)
-    //    {
-    //        EnemySpawner.waveTotal = 1;
-    //    }
-    //    else
-    //    {
-    //        EnemySpawner.waveTotal--;
-    //    }
-    //}
+    public static void Decrease()
+    {
+        if (EnemySpawner.waveTotal <= 0)
+        {
+            EnemySpawner.waveTotal = 1;
+        }
+        else
+        {
+            EnemySpawner.waveTotal--;
+        }
+    }
 }

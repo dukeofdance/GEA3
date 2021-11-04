@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
 	[SerializeField]
 	public static int enemyLimit=1, waveTotal=1;
-	private int enemyCount;
+	private int enemyCount = 1;
 
 	public static Vector3 v;
 
@@ -29,14 +29,23 @@ public class EnemySpawner : MonoBehaviour
 	public TextMeshProUGUI enemyText;
 	public TextMeshProUGUI waveCountText;
 
+	private System.String wasd = "Move around by using WASD";
+	private System.String fire = "Shoot using SPACE";
+	private System.String foe = "Dodge or destory enemy ships and asteroids";
+
+	public TextMeshProUGUI TopText;
+	private bool w = false, a = false, s = false, d = false, shoot = false;
+
 	[DllImport("A2Plugin")]
 	private static extern int randomScale(float i1, float i2);
 
 	// Start is called before the first frame update
 	void Start()		{
+
 		menu.enabled = true;
 		enemyLimit = 1;
 		waveTotal = 1;
+		TopText.text = wasd;
 		while (CommandInvoker.commandHistory.Count > CommandInvoker.counter)
 		{
 			CommandInvoker.commandHistory.RemoveAt(CommandInvoker.counter);
@@ -44,15 +53,53 @@ public class EnemySpawner : MonoBehaviour
 		CommandInvoker.counter = 0;
 
 	}
+	public void CheckInput()
+	{
+		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+		{
+			w = true;
+		}
+		if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+		{
+			s = true;
+		}
+		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+		{
+			a = true;
+		}
+		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+		{
+			d = true;
+		}
+
+		if (w == true && a == true && s == true && d == true)
+		{
+			if (Input.GetKey(KeyCode.Space))
+			{
+				shoot = true;
+			}
+		}
+	}
 	private void Update()
     {
 		if (menu.enabled == true)
         {
 			enemyText.text = "Enemy Count: " + enemyLimit;
 			waveCountText.text = "Total Waves: " + waveTotal;
+
+			CheckInput();
+			if (w == true && a == true && s == true && d == true)
+			{
+				TopText.text = fire;
+			}
+			if (shoot == true)
+			{
+				TopText.text = foe;
+			}
 		}
 
 	}
+
     public void StartGame()
     {
 		menu.enabled = false;
@@ -69,7 +116,7 @@ public class EnemySpawner : MonoBehaviour
 			wave += 1;
 			WaveText.text = "Wave " + wave+"/"+waveTotal;
 			Debug.Log("WT: " + waveTotal);
-			enemyCount = 0;
+			enemyCount = 1;
 			enemyLimit++;
 			waveTimer = 10;
 			Invoke("SpawnEnemies", spawnTimer);
@@ -82,9 +129,12 @@ public class EnemySpawner : MonoBehaviour
 
 	public void FoeUP()
     {
-		ICommand foePlus = new EnemyUp();
-		CommandInvoker.AddCommand(foePlus);
-		Debug.Log("Foe Up");
+		if (menu.enabled == true)
+		{
+			ICommand foePlus = new EnemyUp();
+			CommandInvoker.AddCommand(foePlus);
+			Debug.Log("Foe Up: "+enemyLimit);
+		}
 	}
 	//public void FoeDown()
 	//{
@@ -93,10 +143,18 @@ public class EnemySpawner : MonoBehaviour
 	//}
 	public void WaveUP()
 	{
-		ICommand wavePlus = new WavesUp();
-		CommandInvoker.AddCommand(wavePlus);
-		Debug.Log("Wave Up");
+		if (menu.enabled == true)
+		{
+			ICommand wavePlus = new WavesUp();
+			CommandInvoker.AddCommand(wavePlus);
+			Debug.Log("Wave Up: " +waveTotal);
+		}
 	}
+
+	public void ButtonPressed()
+    {
+		Debug.Log("Button Pressed");
+    }
 	//public void WaveDown()
 	//{
 	//	CommandInvoker.UndoCommand();
@@ -120,7 +178,7 @@ public class EnemySpawner : MonoBehaviour
 				asteroid.transform.localScale = new Vector3(rand, rand, rand);
 				asteroid.transform.position = spawnLocation;
 				Invoke("SpawnEnemies", spawnTimer);
-				Debug.Log("astroid here");		
+				//Debug.Log("astroid here " + enemyCount);		
 			}
 			else
 			{
@@ -128,8 +186,10 @@ public class EnemySpawner : MonoBehaviour
 				nme.transform.position = spawnLocation;
 				//Instantiate(enemyPrefab, spawnLocation, Quaternion.Euler(0f, -90f, 90f));
 				Invoke("SpawnEnemies", spawnTimer);
+				//Debug.Log("dude here "+ enemyCount);
+
 			}
-			Debug.Log("there are :" + enemyCount);
+			//Debug.Log("there are :" + enemyCount);
 			enemyCount++;
 		}
 	}
