@@ -19,6 +19,8 @@ public class EnemySpawner : MonoBehaviour
 	public float waveTimer;
 	public int wave = 1;
 
+	public GameObject Invoker;
+
 	[SerializeField]
 	public static int enemyLimit=1, waveTotal=1;
 	private int enemyCount = 0;
@@ -41,10 +43,11 @@ public class EnemySpawner : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()		{
-
+		Invoker.SetActive(true);
 		menu.enabled = true;
 		enemyLimit = 1;
 		waveTotal = 1;
+		waveTimer = 10.0f;
 		TopText.text = wasd;
 		while (CommandInvoker.commandHistory.Count > CommandInvoker.counter)
 		{
@@ -80,7 +83,7 @@ public class EnemySpawner : MonoBehaviour
 			}
 		}
 	}
-	private void Update()
+	private void FixedUpdate()
     {
 		if (menu.enabled == true)
         {
@@ -98,13 +101,15 @@ public class EnemySpawner : MonoBehaviour
 			}
 		}
 
+
 	}
 
     public void StartGame()
     {
 		menu.enabled = false;
-		Invoke("SpawnEnemies", spawnTimer);
-		Invoke("nextWave", waveTimer);
+		Invoke("SpawnEnemies", 1.0f);
+		Invoke("nextWave", 10.0f);
+		Invoker.SetActive(false);
 
 	}
 
@@ -118,9 +123,10 @@ public class EnemySpawner : MonoBehaviour
 			Debug.Log("WT: " + waveTotal);
 			enemyCount = 1;
 			enemyLimit++;
-			waveTimer = 10;
-			Invoke("SpawnEnemies", spawnTimer);
-			Invoke("nextWave", waveTimer);
+			waveTimer += 10;
+			Debug.Log("Next: " + wave);
+			Invoke("SpawnEnemies", 1.0f);
+			Invoke("nextWave", 10.0f);
 			}
 		else
 			{SceneManager.LoadScene("YouWon");}
@@ -133,7 +139,7 @@ public class EnemySpawner : MonoBehaviour
 		{
 			ICommand foePlus = new EnemyUp();
 			CommandInvoker.AddCommand(foePlus);
-			Debug.Log("Foe Up: "+enemyLimit);
+			//Debug.Log("Foe Up: "+enemyLimit);
 		}
 	}
 	//public void FoeDown()
@@ -147,7 +153,7 @@ public class EnemySpawner : MonoBehaviour
 		{
 			ICommand wavePlus = new WavesUp();
 			CommandInvoker.AddCommand(wavePlus);
-			Debug.Log("Wave Up: " +waveTotal);
+			//Debug.Log("Wave Up: " +waveTotal);
 		}
 	}
 
@@ -177,7 +183,7 @@ public class EnemySpawner : MonoBehaviour
 				int rand = randomScale(min_Size, max_Size); // Random.Range(min_Size, max_Size);
 				asteroid.transform.localScale = new Vector3(rand, rand, rand);
 				asteroid.transform.position = spawnLocation;
-				Invoke("SpawnEnemies", spawnTimer);
+				Invoke("SpawnEnemies", 1.0f);
 				//Debug.Log("astroid here " + enemyCount);		
 			}
 			else
@@ -185,11 +191,11 @@ public class EnemySpawner : MonoBehaviour
 				var nme =BasicPool.Instance.GetFromPool();
 				nme.transform.position = spawnLocation;
 				//Instantiate(enemyPrefab, spawnLocation, Quaternion.Euler(0f, -90f, 90f));
-				Invoke("SpawnEnemies", spawnTimer);
+				Invoke("SpawnEnemies", 1.0f);
 				//Debug.Log("dude here "+ enemyCount);
 
 			}
-			//Debug.Log("there are :" + enemyCount);
+			Debug.Log("there are :" + enemyCount);
 			enemyCount++;
 		}
 	}

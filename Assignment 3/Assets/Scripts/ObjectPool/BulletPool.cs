@@ -24,7 +24,7 @@ public class BulletPool : MonoBehaviour
     {
         if (availableObjects.Count == 0)
             GrowPool();
-        Debug.Log("count: " + availableObjects.Count);
+        //Debug.Log("count: " + availableObjects.Count);
         var instance = availableObjects.Dequeue();
         instance.gameObject.SetActive(true);
         return instance;
@@ -43,6 +43,6 @@ public class BulletPool : MonoBehaviour
     {
         instance.gameObject.SetActive(false);
         availableObjects.Enqueue(instance);
-        Debug.Log("reloaded");
+        //Debug.Log("reloaded");
     }
 }

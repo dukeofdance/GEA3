@@ -12,6 +12,7 @@ TagManager:
   - TopBoundary
   - Menu
   - SoundEffects
+  - DeathSpike
   layers:
   - Default
   - TransparentFX

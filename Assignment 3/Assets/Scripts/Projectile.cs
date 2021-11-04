@@ -41,10 +41,10 @@ public class Projectile : MonoBehaviour
 			if (this.gameObject.CompareTag("PlayerBullet"))
 			{
 				//this.destroyed.Invoke();
-				AsteroidPool.AddToPool(this);
+				BulletPool.AddToPool(this);
 			}
 			//Destroy(this.gameObject);
-			BulletPool.AddToPool(this);
+			AsteroidPool.AddToPool(this);
 		}
 	}
 

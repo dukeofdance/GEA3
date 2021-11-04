@@ -32,7 +32,7 @@ public class CommandInvoker : MonoBehaviour
         {
             ICommand c = commandBuffer.Dequeue();
             c.Execute();
-            Debug.Log("CI: " +counter);
+            //Debug.Log("CI: " +counter);
             commandHistory.Add(c);
             counter++;
 

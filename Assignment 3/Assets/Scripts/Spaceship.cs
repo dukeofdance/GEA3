@@ -22,7 +22,6 @@ public class Spaceship : MonoBehaviour
     }
 
     protected void Shoot(){
-        Debug.Log("pressed");
         if (!(canShoot = true))
             {
             return;
