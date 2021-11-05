@@ -35,7 +35,6 @@ public class CommandInvoker : MonoBehaviour
             //Debug.Log("CI: " +counter);
             commandHistory.Add(c);
             counter++;
-
         }
 
     }

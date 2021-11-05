@@ -7,17 +7,6 @@ public class Enemy : Spaceship
 
 	public float minVelocity;
 
-	private float timer;
-	public void Update()
-	{
-		timer += Time.deltaTime;
-		if (timer >= 5)
-		{
-			Shoot();
-			timer = 0;
-		}
-
-	}
 	void Awake()
 	{
 		float temp = Random.Range(minVelocity, maxVelocity);

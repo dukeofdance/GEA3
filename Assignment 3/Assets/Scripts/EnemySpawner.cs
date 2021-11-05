@@ -119,11 +119,10 @@ public class EnemySpawner : MonoBehaviour
 		if (wave < waveTotal)
 			{
 			wave += 1;
-			WaveText.text = "Wave " + wave+"/"+waveTotal;
+			WaveText.text = "Wave " + wave;
 			Debug.Log("WT: " + waveTotal);
 			enemyCount = 1;
 			enemyLimit++;
-			waveTimer += 10;
 			Debug.Log("Next: " + wave);
 			Invoke("SpawnEnemies", 1.0f);
 			Invoke("nextWave", 10.0f);

@@ -6952,6 +6952,7 @@ MonoBehaviour:
   spawnTimer: 1
   waveTimer: 10
   wave: 1
+  Invoker: {fileID: 1878562999}
   menu: {fileID: 1962014094}
   enemyText: {fileID: 1858871702}
   waveCountText: {fileID: 819698801}
