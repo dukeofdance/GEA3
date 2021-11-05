@@ -1,19 +1,15 @@
-# GE-AS2
+# GE-A3
 
 ### Development Team
 
-Christian Riggi: 100752293
-
-Jonathan Narine: 100741302
-
 Ehren Chan: 100753167
 
-### YouTube link for Demo Video: https://youtu.be/tBmOxlB_Srw
+### YouTube link for Demo Video: 
 
 ### Game Description
 The game that we have created is called **Space Shooter.** This game is a 2D-Fixed shooter game, reminiscent to that of Galaga or Space Invaders. In this game, you play as a spaceship flying through space as you attempt to survive by shooting your way through wave after waves of enemy spacecraft and asteroids. Each wave lasts around 10 seconds and the amount of enemies and asteroids vary each wave. Your goal is to survive until the final wave is complete. 
 
-Note: This game was originally used as Jonathan Narine's Assignment 1 project. For this assignment, we used it as a base to modify and implement design patterns.
+Note: This game was uses Assignment 2 as a base. For this assignment, I implement the ObjectPooling design pattern.
 
 ### Screenshots:
 
@@ -23,11 +19,12 @@ Note: This game was originally used as Jonathan Narine's Assignment 1 project. F
 
 
 ### UML Diagram
-Here is a UML Diagram of our Observer pattern within the game:
+Here is a UML Diagram of our Object Pool pattern within the game:
 
-![image](https://user-images.githubusercontent.com/56273491/138798047-3b7718c9-5d61-4e26-884b-47bf3c278d53.png)
+![image](![image](https://user-images.githubusercontent.com/56047837/140443279-a6f204c5-3779-495e-9dff-9ffd08b0750c.png)
 
-##YouTube Video link:
+
+##YouTube Video link: https://youtu.be/ncozd7uAxpU
 
 ## Third-party Acknowledgement/References
 
@@ -64,9 +61,13 @@ https://refactoring.guru/design-patterns/command (Commannd Documentation for bet
 https://www.habrador.com/tutorials/programming-patterns/1-command-pattern/
 
 
+**Sound and Music Assets:
+https://youtu.be/RDe0rf6K3vM
+https://youtu.be/2LUmAh2dKaM
+https://www.youtube.com/watch?v=PF2AUEoLRtU
+https://www.youtube.com/watch?v=mbKbSiGl2tY
+
 **Tutorial's Referenced:**
 
-Tutorial 4: (Referenced Parisa's code on how to implement a DLL in Visual Studio and Import it to Unity)
-
-Tutorial 5: ( Referenced Parisa's code on how to implement a command pattern in Unity)
+Tutorial 5: ( Referenced Parisa's code on how to implement an Object Oppn in Unity)
 
