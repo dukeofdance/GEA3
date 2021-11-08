@@ -16,6 +16,9 @@ public class Player : Spaceship
 	// Code referenced from Parisa's Lecture 4 Videos: https://drive.google.com/file/d/1mKuH4BzcJgqX2wQFOKWYbX6r7i3cS7mQ/view
 	public static event Action has_Shot;
 
+	public static event System.Action<string> PlayerHit;
+
+
 
 	// Update is called once per frame
 	public void Update()
@@ -65,12 +68,13 @@ public class Player : Spaceship
 		{
 		if (other.gameObject.tag == "Asteroid"|| other.gameObject.tag == "Enemy")
 			{
-			lives -= 1;
-			die.Play();
-			if (lives==0) {
-				SceneManager.LoadScene("YouLose");
-				}
-			livesText.text = "Lives: " + lives;
+				lives -= 1;
+				PlayerHit?.Invoke("Ow");
+				die.Play();
+				if (lives==0) {
+					SceneManager.LoadScene("YouLose");
+					}
+				livesText.text = "Lives: " + lives;
 			}
 		if (other.gameObject.tag == "Boundary")
 			{
